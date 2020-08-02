@@ -11,7 +11,7 @@ type Publisher struct {
 
 func (p *Publisher) Start() {
 	fmt.Println("Publisher: Wasting time...")
-	time.Sleep(time.Microsecond * 5)
+	time.Sleep(time.Second * 5)
 	p.end()
 }
 

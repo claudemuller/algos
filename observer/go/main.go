@@ -4,10 +4,9 @@ import "github.com/claudemuller/algos/observer/go/src"
 
 func main() {
 	p := &src.Publisher{}
-	s := &src.Subscriber{}
-
-	// Store a pointer to the publisher on the subscriber
-	s.Init(p)
+	s := &src.Subscriber{
+		Publisher: p,
+	}
 
 	// Subscribe to publisher with subscriber's Speak func
 	p.Subscribe(s.Speak)
