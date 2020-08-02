@@ -24,5 +24,8 @@ class Publisher {
     subscriptions.length - 1
   }
 
-  def unsubscribe(i: Int): Unit = subscriptions = subscriptions.patch(i, Nil, 1)
+  def unsubscribe(i: Int): Unit = {
+    println("Publisher: Unsubscribing a subscriber...")
+    subscriptions = subscriptions.patch(i, Nil, 1)
+  }
 }
