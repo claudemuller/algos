@@ -6,7 +6,7 @@ import (
 )
 
 type Publisher struct {
-	subscriptions []func(string)
+	Broker *Broker
 }
 
 func (p *Publisher) Start() {
@@ -16,24 +16,6 @@ func (p *Publisher) Start() {
 }
 
 func (p *Publisher) end() {
-	fmt.Println("Publisher: Notifying subscribers that I am done wasting time...")
-	p.notify("Done")
-}
-
-func (p *Publisher) notify(d string) {
-	for _, s := range p.subscriptions {
-		s(d)
-	}
-}
-
-func (p *Publisher) Subscribe(f func(string)) int {
-	fmt.Println("Publisher: Subscribing a subscriber...")
-
-	p.subscriptions = append(p.subscriptions, f)
-
-	return len(p.subscriptions) - 1
-}
-
-func (p *Publisher) Unsubscribe(i int) {
-	p.subscriptions = append(p.subscriptions[:i], p.subscriptions[i+1:len(p.subscriptions)]...)
+	fmt.Println("Publisher: Notifying subscribers (through Broker) that I am done wasting time...")
+	p.Broker.Notify("speak", "Done")
 }
