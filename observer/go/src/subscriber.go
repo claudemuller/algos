@@ -12,9 +12,10 @@ func (s *Subscriber) Init(p *Publisher) {
 }
 
 func (s *Subscriber) Shutdown() {
+	fmt.Println("Subscriber: Unsubscribing...")
 	s.publisher.Unsubscribe(s.Subscription)
 }
 
-func (s *Subscriber) Speak() {
-	fmt.Println("Hello")
+func (s *Subscriber) Speak(d string) {
+	fmt.Printf("Subscriber: Publisher says \"%s\"\n", d)
 }

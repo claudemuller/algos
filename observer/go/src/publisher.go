@@ -1,27 +1,34 @@
 package src
 
-import "time"
+import (
+	"fmt"
+	"time"
+)
 
 type Publisher struct {
-	subscriptions []func()
+	subscriptions []func(string)
 }
 
 func (p *Publisher) Start() {
+	fmt.Println("Publisher: Wasting time...")
 	time.Sleep(time.Microsecond * 5)
 	p.end()
 }
 
 func (p *Publisher) end() {
-	p.notify()
+	fmt.Println("Publisher: Notifying subscribers that I am done wasting time...")
+	p.notify("Done")
 }
 
-func (p *Publisher) notify() {
+func (p *Publisher) notify(d string) {
 	for _, s := range p.subscriptions {
-		s()
+		s(d)
 	}
 }
 
-func (p *Publisher) Subscribe(f func()) int {
+func (p *Publisher) Subscribe(f func(string)) int {
+	fmt.Println("Publisher: Subscribing a subscriber...")
+
 	p.subscriptions = append(p.subscriptions, f)
 
 	return len(p.subscriptions) - 1
