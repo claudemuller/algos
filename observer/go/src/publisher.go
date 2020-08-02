@@ -35,5 +35,7 @@ func (p *Publisher) Subscribe(f func(string)) int {
 }
 
 func (p *Publisher) Unsubscribe(i int) {
+	fmt.Println("Publisher: Unsubscribing subscriber...")
+
 	p.subscriptions = append(p.subscriptions[:i], p.subscriptions[i+1:len(p.subscriptions)]...)
 }
