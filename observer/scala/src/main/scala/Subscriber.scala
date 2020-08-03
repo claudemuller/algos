@@ -1,7 +1,7 @@
 package observer
 
 class Subscriber(val publisher: Publisher) {
-  var subscription: Int = _
+  var subscription: Option[Int] = None
 
   def shutdown(): Unit = {
     println("Subscriber: Unsubscribing...")

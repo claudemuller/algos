@@ -18,14 +18,19 @@ class Publisher {
     for (s <- subscriptions) s(d)
   }
 
-  def subscribe(f: String => Unit): Int = {
+  def subscribe(f: String => Unit): Option[Int] = {
     println("Publisher: Subscribing a subscriber...")
     subscriptions = subscriptions ++ List(f)
-    subscriptions.length - 1
+    Some(subscriptions.length - 1)
   }
 
-  def unsubscribe(i: Int): Unit = {
+  def unsubscribe(i: Option[Int]): Unit = {
     println("Publisher: Unsubscribing a subscriber...")
-    subscriptions = subscriptions.patch(i, Nil, 1)
+    i match {
+      case Some(x) =>
+        subscriptions = subscriptions.patch(x, Nil, 1)
+        println(s"Publisher: removing subscriber $x")
+      case None =>
+    }
   }
 }

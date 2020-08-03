@@ -5,7 +5,8 @@ object main extends App {
   val s = new Subscriber(p)
 
   // Subscribe to publisher with subscriber's Speak func
-  p.subscribe(s.speak)
+  s.subscription = p.subscribe(s.speak)
+  println(s"Main: subscriber's ID is ${s.subscription}")
 
   // Start publisher's time wasting
   p.start()
