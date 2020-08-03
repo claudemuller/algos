@@ -15,7 +15,7 @@ class Publisher {
   }
 
   def notify(d: String): Unit = {
-    for (s <- subscriptions) s(d)
+    subscriptions.foreach(_(d))
   }
 
   def subscribe(f: String => Unit): Option[Int] = {
