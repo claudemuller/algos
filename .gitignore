@@ -16,3 +16,9 @@ project/plugins/project/
 .scala_dependencies
 .worksheet
 .idea
+
+# JavaScript
+node_modules
+
+# OSX
+.DS_STORE
